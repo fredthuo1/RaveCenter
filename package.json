@@ -1,0 +1,29 @@
+{
+  "name": "cos550-fredthuo1",
+  "version": "1.0.0",
+  "description": "This is the start of your repository for the Advanced Software Engineering course.\r 1. Clone this repository to your computer.\r 2. Create a basic project of your chosen application type within a sub-folder of your clone.\r 3. Establish a proper .gitignore file for your project before making any commits into revision control.\r 4. Commit the starter files for the basic project.\r 5. Begin work on your project features.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FullSailGameStudies/cos550-fredthuo1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FullSailGameStudies/cos550-fredthuo1/issues"
+  },
+  "homepage": "https://github.com/FullSailGameStudies/cos550-fredthuo1#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
