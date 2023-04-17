@@ -22,11 +22,6 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     .then(() => console.log("Connected to MongoDB"))
     .catch((err) => console.log("Error connecting to MongoDB:", err));
 
-// Create a simple route
-app.get("/", (req, res) => {
-    res.send("Welcome to MERN Stack Authenticator!");
-});
-
 // Use authentication routes
 app.use("/api/auth", authRoutes);
 

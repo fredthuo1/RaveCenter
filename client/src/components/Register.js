@@ -21,7 +21,7 @@ const Register = () => {
             };
 
             const body = JSON.stringify({ username, email, password });
-            const response = await axios.post('http://localhost:5000/api/auth/register', body, config);
+            const response = await axios.post('/api/auth/register', body, config);
 
             setUser(response.data.user); // Set the user data in the global state
             navigate('/'); // Redirect to the home page after successful registration
