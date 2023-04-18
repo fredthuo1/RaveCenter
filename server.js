@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 
 // ...
 const path = require('path');
+const __dirname = path.resolve();
 
 // Accessing the path module
 const authRoutes = require('./routes/auth');
