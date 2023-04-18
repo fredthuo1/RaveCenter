@@ -4,8 +4,11 @@
   "description": "This is the start of your repository for the Advanced Software Engineering course.\r 1. Clone this repository to your computer.\r 2. Create a basic project of your chosen application type within a sub-folder of your clone.\r 3. Establish a proper .gitignore file for your project before making any commits into revision control.\r 4. Commit the starter files for the basic project.\r 5. Begin work on your project features.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
