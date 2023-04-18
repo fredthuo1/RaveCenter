@@ -12,7 +12,6 @@ const Register = () => {
 
     const onSubmit = async e => {
         e.preventDefault();
-
         try {
             const config = {
                 headers: {
