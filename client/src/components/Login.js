@@ -20,7 +20,7 @@ const Login = () => {
             };
 
             const body = JSON.stringify({ email, password });
-            const response = await axios.post('http://localhost:5000/api/auth/login', body, config);
+            const response = await axios.post('/api/auth/login', body, config);
 
             setUser(response.data.user); // Set the user data in the global state
             navigate('/'); // Redirect to the home page after successful login
