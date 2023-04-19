@@ -6,7 +6,11 @@ const HomePage = () => {
 
     return (
         <div>
-            <h1>Welcome!</h1>
+            {user ? (
+                <h1>Welcome, {user.username}!</h1>
+            ) : (
+                <h1>Welcome! Let's party</h1>
+            )}
         </div>
     );
 };
