@@ -2,14 +2,40 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+
 const router = express.Router();
+
+// Email regex
+const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 
 // Register route
 router.post("/register", async (req, res) => {
     // Your registration logic here
-    try {
-        const { username, email, password } = req.body;
+    const { username, email, password } = req.body;
 
+    // Server-side validation
+    if (!username || !email || !password) {
+        return res.status(400).json({ message: 'Please fill out all fields.' });
+    }
+
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({ message: 'Invalid email format.' });
+    }
+
+    if (password.length < 8) {
+        return res.status(400).json({ message: 'Password must be at least 8 characters.' });
+    }
+
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasDigit = /\d/.test(password);
+    const hasSpecialChar = /[^A-Za-z0-9]/.test(password);
+
+    if (!(hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar)) {
+        return res.status(400).json({ message: 'Password must include uppercase letters, lowercase letters, digits, and special characters.' });
+    }
+
+    try {
         // Check if user already exists
         const existingUser = await User.findOne({ $or: [{ email }, { username }] });
         if (existingUser) {
@@ -33,9 +59,18 @@ router.post("/register", async (req, res) => {
 // Login route
 router.post("/login", async (req, res) => {
     // Your login logic here
-    try {
-        const { email, password } = req.body;
+    const { email, password } = req.body;
 
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({ message: 'Invalid email format.' });
+    }
+
+    // Server-side validation
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Please fill out all fields.' });
+    }
+
+    try {
         // Check if user exists
         const user = await User.findOne({ email });
         if (!user) {
