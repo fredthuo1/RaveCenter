@@ -78,42 +78,55 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        value={username}
-                        onChange={e => setUsername(e.target.value)}
-                    />
+        <div className="container">
+            <div className="row">
+                <div className="col-md-6 offset-md-3">
+                    <h2 className="my-4 text-center">Register</h2>
+                    {error && (
+                        <div className="alert alert-danger" role="alert">
+                            {error}
+                        </div>
+                    )}
+                    <form onSubmit={onSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="username">Username:</label>
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                value={username}
+                                onChange={e => setUsername(e.target.value)}
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email">Email:</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password:</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                                className="form-control"
+                            />
+                        </div>
+                        <button type="submit" className="btn btn-primary btn-block">
+                            Register
+                        </button>
+                    </form>
                 </div>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                    />
-                </div>
-                <button type="submit">Register</button>
-            </form>
-            {error && <div className="error">{error}</div>}
+            </div>
         </div>
     );
 };
