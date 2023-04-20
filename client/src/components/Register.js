@@ -4,7 +4,8 @@ import axios from 'axios';
 import UserContext from '../UserContext';
 
 const Register = () => {
-    const [username, setUsername] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -30,11 +31,11 @@ const Register = () => {
                 }
             };
 
-            const body = JSON.stringify({ username, email, password });
+            const body = JSON.stringify({ firstName, lastName, email, password });
             const response = await axios.post('/api/auth/register', body, config);
 
             setUser(response.data.user); // Set the user data in the global state
-            navigate('/'); // Redirect to the home page after successful registration
+            navigate('/login'); // Redirect to the home page after successful registration
         } catch (error) {
             if (error.response) {
                 setError(error.response.data.message);
@@ -46,7 +47,7 @@ const Register = () => {
 
     const validateForm = () => {
         // Check if all fields are filled out
-        if (!username || !email || !password) {
+        if (!firstName || !lastName || !email || !password) {
             setError('Please fill out all fields.');
             return false;
         }
@@ -89,13 +90,26 @@ const Register = () => {
                     )}
                     <form onSubmit={onSubmit}>
                         <div className="form-group">
-                            <label htmlFor="username">Username:</label>
+                            <>
+                            <label htmlFor="firstName">First Name:</label>
                             <input
                                 type="text"
-                                id="username"
-                                name="username"
-                                value={username}
-                                onChange={e => setUsername(e.target.value)}
+                                id="firstName"
+                                name="firstName"
+                                value={firstName}
+                                onChange={e => setFirstName(e.target.value)}
+                                className="form-control"
+                                />
+                            </>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="lastName">Last Name:</label>
+                            <input
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                value={lastName}
+                                onChange={e => setLastName(e.target.value)}
                                 className="form-control"
                             />
                         </div>
