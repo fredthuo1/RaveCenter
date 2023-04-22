@@ -7,7 +7,9 @@ const dotenv = require("dotenv");
 const path = require('path');
 
 // Accessing the path module
-const authRoutes = require('./routes/auth');
+const authRoutes = require('./routes/auth'); 
+
+const eventRoutes = require('./routes/events');
 
 dotenv.config();
 const app = express();
@@ -27,6 +29,9 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 
 // Use authentication routes
 app.use("/api/auth", authRoutes);
+
+// Use events routes
+app.use("/api/events", eventRoutes);
 
 // Serve static assets (React build) in production
 if (process.env.NODE_ENV === 'production') {
