@@ -2,16 +2,16 @@
 import React, { useState } from 'react';
 
 const EventForm = ({ event, onSubmit }) => {
-    const [name, setName] = useState(event.name);
-    const [description, setDescription] = useState(event.description);
-    const [url, setUrl] = useState(event.url);
-    const [start, setStart] = useState(event.start);
-    const [end, setEnd] = useState(event.end);
-    const [status, setStatus] = useState(event.status);
-    const [currency, setCurrency] = useState(event.currency);
-    const [online_event, setOnlineEvent] = useState(event.online_event);
-    const [hide_start_date, setHideStartDate] = useState(event.hide_start_date);
-    const [hide_end_date, setHideEndDate] = useState(event.hide_end_date);
+    const [name, setName] = useState(event?.name);
+    const [description, setDescription] = useState(event?.description);
+    const [url, setUrl] = useState(event?.url);
+    const [start, setStart] = useState(event?.start);
+    const [end, setEnd] = useState(event?.end);
+    const [status, setStatus] = useState(event?.status);
+    const [currency, setCurrency] = useState(event?.currency);
+    const [online_event, setOnlineEvent] = useState(event?.online_event);
+    const [hide_start_date, setHideStartDate] = useState(event?.hide_start_date);
+    const [hide_end_date, setHideEndDate] = useState(event?.hide_end_date);
 
     const handleSubmit = (e) => {
         e.preventDefault();

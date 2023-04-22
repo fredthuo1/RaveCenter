@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/HomePage';
+import Dashboard from './components/Dashboard';
 
 const AppRouter = () => {
     const [user, setUser] = useState(null);
@@ -17,6 +18,7 @@ const AppRouter = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                 </Routes>
             </Router>
         </UserContext.Provider>
