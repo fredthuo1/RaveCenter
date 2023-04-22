@@ -1,16 +1,14 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const dotenv = require("dotenv");
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const path = require('path');
 
-// Import routes
-const authRouter = require('./routes/authRouter');
-const eventsRouter = require('./routes/eventsRouter');
-const usersRouter = require('./routes/usersRouter');
+const authRouter = require("./routes/api/authRouter");
+const eventsRouter = require("./routes/api/eventsRouter");
+const userRouter = require("./routes/api/userRouter");
 
 dotenv.config();
-
-// Initialize express app
 const app = express();
 
 // Middleware
@@ -19,13 +17,17 @@ app.use(express.json());
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("Connected to MongoDB"))
-    .catch((err) => console.log("Error connecting to MongoDB:", err));
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.log('Error connecting to MongoDB:', err));
 
-// Use routes
+// Use authentication routes
 app.use('/api/auth', authRouter);
+
+// Use events routes
 app.use('/api/events', eventsRouter);
-app.use('/api/users', usersRouter);
+
+// Use users routes
+app.use('/api/users', userRouter);
 
 // Serve static assets (React build) in production
 if (process.env.NODE_ENV === 'production') {
@@ -36,7 +38,6 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-// Start server
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
