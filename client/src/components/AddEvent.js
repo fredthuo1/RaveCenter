@@ -1,8 +1,8 @@
-// client/src/components/AddEvent.js
-
 import React, { useState } from 'react';
 import EventForm from './EventForm';
 import axios from 'axios';
+
+import '../style/AddEvents.css';
 
 const AddEvent = ({ onEventAdded }) => {
     const [showForm, setShowForm] = useState(true);
@@ -16,9 +16,11 @@ const AddEvent = ({ onEventAdded }) => {
     return (
         <div>
             {!showForm && (
-                <button onClick={() => setShowForm(true)}>Add New Event</button>
+                <button className="add-event-button" onClick={() => setShowForm(true)}>Add New Event</button>
             )}
-            {showForm && <EventForm onSubmit={createEvent} onCancel={() => setShowForm(false)} />}
+            {showForm && <div className="add-event-form"><EventForm onSubmit={createEvent} onCancel={() => setShowForm(false)} /></div>}
+
+
         </div>
     );
 };
