@@ -89,7 +89,7 @@ const EventForm = ({ event, onSubmit }) => {
                 onChange={(e) => setHideEndDate(e.target.checked)}
             />
             <br />
-            <button type="submit">Update Event</button>
+            <button type="submit">Add Event</button>
         </form>
     );
 };

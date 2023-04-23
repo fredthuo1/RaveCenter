@@ -5,7 +5,7 @@ import EventForm from './EventForm';
 import axios from 'axios';
 
 const AddEvent = ({ onEventAdded }) => {
-    const [showForm, setShowForm] = useState(false);
+    const [showForm, setShowForm] = useState(true);
 
     const createEvent = async (newEvent) => {
         const { data } = await axios.post('/api/events', newEvent);
