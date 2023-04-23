@@ -19,6 +19,7 @@ const eventSchema = new mongoose.Schema({
     subcategory_id: { type: String },
     format_id: { type: String },
     timezone: { type: String },
+    image: { data: Buffer, contentType: String },
 });
 
 const Event = mongoose.model('Event', eventSchema);

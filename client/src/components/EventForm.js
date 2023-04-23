@@ -12,11 +12,23 @@ const EventForm = ({ event, onSubmit }) => {
     const [online_event, setOnlineEvent] = useState(event?.online_event);
     const [hide_start_date, setHideStartDate] = useState(event?.hide_start_date);
     const [hide_end_date, setHideEndDate] = useState(event?.hide_end_date);
+    const [image, setImage] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit({ name, description, url, start, end, status, currency, online_event, hide_start_date, hide_end_date });
-    };
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('description', description);
+        formData.append('url', url);
+        formData.append('start', start);
+        formData.append('end', end);
+        formData.append('status', status);
+        formData.append('currency', currency);
+        formData.append('online_event', online_event);
+        formData.append('hide_start_date', hide_start_date);
+        formData.append('hide_end_date', hide_end_date);
+        formData.append('image', image);
+        onSubmit(formData);    };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -44,7 +56,7 @@ const EventForm = ({ event, onSubmit }) => {
             <input
                 type="datetime-local"
                 value={start}
-                onChange={(e) => setUrl(e.target.value)}
+                onChange={(e) => setStart(e.target.value)}
             />
             <br />
             <label>End:</label>
@@ -89,9 +101,21 @@ const EventForm = ({ event, onSubmit }) => {
                 onChange={(e) => setHideEndDate(e.target.checked)}
             />
             <br />
+            <label>Image:</label>
+            <input
+                type="file"
+                onChange={(e) => setImage(e.target.files[0])}
+            />
+            {image && (
+                <div>
+                    <img src={URL.createObjectURL(image)} alt="preview" />
+                </div>
+            )}
+            <br />
             <button type="submit">Add Event</button>
         </form>
     );
+
 };
 
 export default EventForm;
