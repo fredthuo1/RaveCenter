@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-cos550-fredthuo1",
+      "appliesTo": "/",
+      "type": "launch"
+    }
+  ]
+}

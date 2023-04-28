@@ -2,13 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\client",
-    "\\client\\src",
-    "\\client\\src\\components",
-    "\\client\\src\\style",
     "\\controllers",
+    "\\mock",
     "\\models",
     "\\routes",
-    "\\routes\\api"
+    "\\routes\\api",
+    "\\tests"
   ],
   "SelectedNode": "\\controllers\\authController.js",
   "PreviewInSolutionExplorer": false

@@ -14,24 +14,29 @@ const getAllEvents = async (req, res) => {
 // Get an event by ID
 const getEventById = async (req, res) => {
     try {
-        const event = await Event.findOne({ eventId: req.params.id });
-        if (event) {
-            res.status(200).json({ message: 'Event fetched successfully', event });
-        } else {
-            res.status(404).json({ message: 'Event not found' });
+        const event = await Event.findById(req.params.id);
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
         }
-    } catch (err) {
-        res.status(500).json({ message: 'Error fetching event', error: err });
+        return res.status(200).json({
+            message: 'Event fetched successfully',
+            event,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Error fetching event',
+            error,
+        });
     }
 };
 
 // Create a new event
 const createEvent = async (req, res) => {
     try {
-        const { name, description } = req.body; // assuming these are required fields in the event creation request
+        const { name, description, url, start, end, created, changed, status, currency, online_event, hide_start_date, hide_end_date, venue_id, organizer_id, category_id, subcategory_id, format_id, timezone, ratings } = req.body; // assuming these are required fields in the event creation request
         const userId = req.user.id; // assuming the authenticated user's ID is available in the request object
 
-        const event = await Event.create({
+        const event = await Event({
             name,
             description,
             creator,
@@ -51,13 +56,14 @@ const createEvent = async (req, res) => {
             subcategory_id,
             format_id,
             timezone,
+            ratings,
         });
 
-        await event.save(); // save the new event to the database
+        const createdEvent = await event.save(); // save the new event to the database
 
-        await User.findByIdAndUpdate(userId, { $push: { events: event } }); // add the new event's ID to the user's events array
+        await User.findByIdAndUpdate(userId, { $push: { events: createdEvent._id } }); // add the new event's ID to the user's events array
 
-        res.status(201).json(event);
+        res.status(201).json(createdEvent);
     } catch (err) {
         res.status(500).json({ message: 'Error creating event', error: err });
     }
