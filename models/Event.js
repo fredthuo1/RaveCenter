@@ -19,7 +19,8 @@ const eventSchema = new mongoose.Schema({
     subcategory_id: { type: String },
     format_id: { type: String },
     timezone: { type: String },
-    image: { data: Buffer, contentType: String },
+    creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    ratings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Rating' }],
 });
 
 const Event = mongoose.model('Event', eventSchema);

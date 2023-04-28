@@ -10,11 +10,17 @@ const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 
 // Register a new user
 const register = async (req, res) => {
-
     // Call the createUser method to handle the rest of the validation and user creation
-    const newUser = await usersController.createUser({ firstName, lastName, email, password });
-
-    res.status(201).json({ message: "User registered successfully", user: newUser });
+    try {
+        const newUser = await usersController.createUser(req, res);
+        console.log(newUser)
+        if (!res.headersSent) {
+            res.status(201).json({ message: "User registered successfully", user: newUser });
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Server error. Please try again later." });
+    }
 };
 
 // Login a user

@@ -14,7 +14,7 @@ const AddEvent = ({ onEventAdded }) => {
     };
 
     return (
-        <div>
+        <div className="add-event">
             {!showForm && (
                 <button className="add-event-button" onClick={() => setShowForm(true)}>Add New Event</button>
             )}

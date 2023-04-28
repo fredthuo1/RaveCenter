@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard';
 import AddEvent from './components/AddEvent';
 import EventForm from './components/EventForm';
 import EventView from './components/EventView';
+import AboutUs from './components/AboutUs';
 
 const AppRouter = () => {
     const [user, setUser] = useState(null);
@@ -25,6 +26,7 @@ const AppRouter = () => {
                     <Route path="/add-event" element={<AddEvent />} />
                     <Route path="/view-event" element={<EventForm />} />
                     <Route path="/edit-event" element={<EventView />} />
+                    <Route path="/aboutUs" element={<AboutUs />} />
                 </Routes>
             </Router>
         </UserContext.Provider>

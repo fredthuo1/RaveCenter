@@ -1,6 +1,4 @@
-const express = require("express");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 // Email regex
@@ -32,30 +30,28 @@ const getUserById = async (req, res) => {
 // Create a new user
 const createUser = async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
-
+    
     // Server-side validation
+    let errorMessage = '';
     if (!firstName || !lastName || !email || !password) {
-        return res.status(400).json({ message: 'Please fill out all fields.' });
+        errorMessage = 'Please fill out all fields.';
+    } else if (!emailRegex.test(email)) {
+        errorMessage = 'Invalid email format.';
+    } else if (password.length < 8) {
+        errorMessage = 'Password must be at least 8 characters.';
+    } else {
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasDigit = /\d/.test(password);
+        const hasSpecialChar = /[^A-Za-z0-9]/.test(password);
+
+        if (!(hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar)) {
+            errorMessage = 'Password must include uppercase letters, lowercase letters, digits, and special characters.';
+        }
     }
 
-    // validate email format
-    if (!emailRegex.test(email)) {
-        return res.status(400).json({ message: 'Invalid email format.' });
-    }
-
-    // Validate password lenght 
-    if (password.length < 8) {
-        return res.status(400).json({ message: 'Password must be at least 8 characters.' });
-    }
-
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasLowerCase = /[a-z]/.test(password);
-    const hasDigit = /\d/.test(password);
-    const hasSpecialChar = /[^A-Za-z0-9]/.test(password);
-
-    // Validate password format
-    if (!(hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar)) {
-        return res.status(400).json({ message: 'Password must include uppercase letters, lowercase letters, digits, and special characters.' });
+    if (errorMessage) {
+        return res.status(400).json({ message: errorMessage });
     }
 
     try {
@@ -73,11 +69,16 @@ const createUser = async (req, res) => {
         const newUser = new User({ firstName, lastName, email, password: hashedPassword });
         await newUser.save();
 
+        if (!res.headersSent) {
+            res.setHeader('Content-Type', 'application/json');
+        }
+
         res.status(201).json({ message: "User created successfully", user: newUser });
     } catch (error) {
         res.status(500).json({ message: "Server error. Please try again later." });
     }
 };
+
 
 // Update a user
 const updateUser = async (req, res) => {

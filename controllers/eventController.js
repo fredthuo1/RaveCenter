@@ -1,4 +1,5 @@
 const Event = require('../models/Event');
+const User = require('../models/User');
 
 // Get all events
 const getAllEvents = async (req, res) => {
@@ -27,13 +28,41 @@ const getEventById = async (req, res) => {
 // Create a new event
 const createEvent = async (req, res) => {
     try {
-        const event = new Event(req.body);
-        await event.save();
-        res.status(201).json({ message: 'Event created successfully', event });
+        const { name, description } = req.body; // assuming these are required fields in the event creation request
+        const userId = req.user.id; // assuming the authenticated user's ID is available in the request object
+
+        const event = await Event.create({
+            name,
+            description,
+            creator,
+            url,
+            start,
+            end,
+            created,
+            changed,
+            status,
+            currency,
+            online_event,
+            hide_start_date,
+            hide_end_date,
+            venue_id,
+            organizer_id,
+            category_id,
+            subcategory_id,
+            format_id,
+            timezone,
+        });
+
+        await event.save(); // save the new event to the database
+
+        await User.findByIdAndUpdate(userId, { $push: { events: event } }); // add the new event's ID to the user's events array
+
+        res.status(201).json(event);
     } catch (err) {
         res.status(500).json({ message: 'Error creating event', error: err });
     }
 };
+
 
 // Update an event by ID
 const updateEventById = async (req, res) => {

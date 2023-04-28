@@ -101,16 +101,6 @@ const EventForm = ({ event, onSubmit }) => {
                 onChange={(e) => setHideEndDate(e.target.checked)}
             />
             <br />
-            <label>Image:</label>
-            <input
-                type="file"
-                onChange={(e) => setImage(e.target.files[0])}
-            />
-            {image && (
-                <div>
-                    <img src={URL.createObjectURL(image)} alt="preview" />
-                </div>
-            )}
             <br />
             <button type="submit">Add Event</button>
         </form>

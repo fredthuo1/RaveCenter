@@ -1,5 +1,4 @@
 // client/src/components/EventView.js
-
 import React from 'react';
 
 const EventView = ({ event }) => {

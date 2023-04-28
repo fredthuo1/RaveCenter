@@ -16,6 +16,9 @@ const Navbar = () => {
             <Link className="navbar-brand" to="/">
                 Rave Center
             </Link>
+            <Link className="navbar-brand" to="/aboutUs">
+                About Us 
+            </Link>
             <button
                 className="navbar-toggler"
                 type="button"
