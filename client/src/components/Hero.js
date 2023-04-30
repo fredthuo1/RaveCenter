@@ -8,7 +8,7 @@ const Hero = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/aboutUs');
+        navigate('/events');
     }
 
     return (
@@ -17,8 +17,8 @@ const Hero = () => {
                 <>
                     <h1 className="hero__title">Welcome to Rave Center {user.firstName}!</h1>
                     <p className="hero__subtitle">Let's Party</p>
-                    <button type="submit" className="btn btn-primary btn-block">
-                        Login
+                    <button onClick={handleClick}>
+                        View Events near You!
                     </button>
                 </>
             ) : (

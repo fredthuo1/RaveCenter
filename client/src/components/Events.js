@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import EventsList from './EventsList';
-import '../style/Dashboard.scss';
 
-const Dashboard = () => {
+const Events = () => {
     const [events, setEvents] = useState([]);
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate('/add-event');
-    }
 
     useEffect(() => {
         fetchEvents();
@@ -26,12 +19,8 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="container">
-            <h2>Events Dashboard</h2>
-            <button className="add-event-btn" onClick={handleClick}>Add Event</button>
-            <EventsList events={events} />
-        </div>
+        <EventsList events={events} />
     );
 };
 
-export default Dashboard;
+export default Events;

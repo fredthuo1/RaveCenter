@@ -153,7 +153,7 @@ const createEventOnEventBrite = async (req, res) => {
     console.log(req.body)
     const {
         name: { html },
-        description: { html },
+        description,
         start: { utc: startUtc, timezone: startTz },
         end: { utc: endUtc, timezone: endTz },
         currency,

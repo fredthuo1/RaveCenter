@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import EventForm from './EventForm';
 import axios from 'axios';
 
-import '../style/AddEvents.css';
+import '../style/AddEvents.scss';
 
 const AddEvent = ({ onEventAdded }) => {
     const [showForm, setShowForm] = useState(true);

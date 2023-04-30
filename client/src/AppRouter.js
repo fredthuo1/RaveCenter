@@ -13,6 +13,7 @@ import AboutUs from './components/AboutUs';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ContactPage from './components/ContactPage';
+import Events from './components/Events';
 
 const AppRouter = () => {
     const [user, setUser] = useState(null);
@@ -32,6 +33,7 @@ const AppRouter = () => {
                     <Route path="/edit-event" element={<EventView />} />
                     <Route path="/aboutUs" element={<AboutUs />} />
                     <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/events" element={<Events />} />
                 </Routes>
                 <Footer />
             </Router>

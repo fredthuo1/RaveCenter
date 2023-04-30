@@ -1,9 +1,9 @@
 .add-event-btn {
     display: inline-block;
-    background-color: yellow;
-    color: yellow;
+    background-color: black;
+    color: white;
     padding: 8px 16px;
-    border-radius: 20px;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
     margin: 20px 0;
@@ -13,5 +13,5 @@
 }
 
     .add-event-btn:hover {
-        background-color: yellow;
+        background-color: lightseagreen;
     }
