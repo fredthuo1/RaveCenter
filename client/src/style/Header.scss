@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 0;
+
+    &__logo {
+        text-align: center;
+    }
+
+    &__title {
+        font-family: 'Lato', sans-serif;
+        font-weight: 900;
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__subtitle {
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+        font-size: 1rem;
+        margin: 0;
+        padding: 0;
+    }
+}

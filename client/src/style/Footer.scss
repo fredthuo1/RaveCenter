@@ -1,0 +1,42 @@
+// src/styles/Footer.scss
+.footer {
+    padding: 30px;
+    background-color: #222;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+    }
+
+    &__logo {
+        // Add your logo styling here
+    }
+
+    &__links {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: inline;
+            margin: 0 5px;
+        }
+    }
+
+    &__link {
+        color: #fff;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__copyright {
+        margin-top: 10px;
+        font-size: 0.9rem;
+    }
+}

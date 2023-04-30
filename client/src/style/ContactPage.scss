@@ -1,0 +1,76 @@
+.contact-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f7f7f7;
+    padding: 40px;
+    margin: auto;
+
+    &__content {
+        max-width: 500px;
+        text-align: center;
+        margin: auto;
+        background-color: #fff;
+        padding: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin: auto;
+    }
+
+    h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        font-weight: 700;
+        color: #000;
+    }
+
+    p {
+        margin-bottom: 40px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #e5e5e5;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        button[type='submit'] {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                background-color: #fff;
+                color: #000;
+                border: 2px solid #000;
+            }
+        }
+    }
+}

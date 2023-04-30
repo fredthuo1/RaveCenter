@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
-import UserContext from '../UserContext';
+import React from 'react';
+import '../style/AboutPage.scss';
+import TeamSection from './TeamSection';
 
 const AboutUs = () => {
-
     return (
-        <div>
-            Welcome and party with us!
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
+        <main className="about">
+            <h2 className="about__title">About Us</h2>
+            <p className="about__text">
+                Arcade is a fluid template designed to showcase your content with elegance and simplicity. With an emphasis on
+                typography and space, Arcade is perfect for photographers, bloggers, and creatives of all kinds.
+            </p>
+            <TeamSection />
+        </main>
     );
 };
 

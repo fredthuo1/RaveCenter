@@ -1,0 +1,22 @@
+// src/styles/Section.scss
+.section {
+    padding: 50px;
+    text-align: center;
+
+    &__title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    &__content {
+        font-size: 1rem;
+    }
+
+    &--variant-1 {
+        background-color: #f0f0f0;
+    }
+
+    &--variant-2 {
+        background-color: #ffffff;
+    }
+}

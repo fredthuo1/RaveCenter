@@ -1,17 +1,19 @@
 import React, { useContext } from 'react';
 import UserContext from '../UserContext';
+import EventsSection from './EventsSection';
+import Hero from './Hero';
+import Information from './Information';
+import '../style/HomePage.scss';
 
 const HomePage = () => {
     const { user } = useContext(UserContext);
 
     return (
-        <div>
-            {user ? (
-                <h1>Welcome, {user.firstName} {user.lastName}!</h1>
-            ) : (
-                <h1>Welcome! Let's party</h1>
-            )}
-        </div>
+        <main className="home-page">
+            <Hero />
+            <Information />
+            <EventsSection />
+        </main>
     );
 };
 

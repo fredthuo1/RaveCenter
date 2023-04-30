@@ -1,0 +1,65 @@
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2%;
+
+    .team__member {
+        margin: 20px;
+        width: 800px;
+        height: 400px;
+        border-radius: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        filter: brightness(100%);
+        transition: filter 0.3s ease-in-out;
+        display: flex;
+        flex-direction: row;
+
+        &:hover {
+            filter: brightness(120%);
+        }
+
+        &__image {
+            width: 50%;
+            height: 100%;
+            border-radius: 20px 0 0 20px;
+            object-fit: cover;
+            padding: 5%;
+        }
+
+        &__info {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            &__name {
+                margin-top: 0;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            &__role {
+                margin-top: 10px;
+                font-size: 18px;
+                font-weight: normal;
+                color: #999;
+            }
+
+            &__social {
+                margin-top: 30px;
+
+                &-icon {
+                    font-size: 24px;
+                    margin-right: 10px;
+                    color: #666;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        color: #333;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import UserContext from '../UserContext';
+import '../style/Login.scss';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -56,44 +57,34 @@ const Login = () => {
     };
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-md-6 offset-md-3">
-                    <h2 className="my-4 text-center">Login</h2>
+        <div className="login">
+                <div>
+                    <h2>Login</h2>
                     {error && (
                         <div className="alert alert-danger" role="alert">
                             {error}
                         </div>
                     )}
                     <form onSubmit={onSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="email">Email:</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={email}
-                                onChange={e => setEmail(e.target.value)}
-                                className="form-control"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="password">Password:</label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
-                                className="form-control"
-                            />
-                        </div>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
                         <button type="submit" className="btn btn-primary btn-block">
                             Login
                         </button>
                     </form>
                 </div>
-            </div>
         </div>
     );
 };

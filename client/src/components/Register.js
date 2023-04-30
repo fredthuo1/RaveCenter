@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import UserContext from '../UserContext';
+import '../style/Registration.scss';
 
 const Register = () => {
     const [firstName, setFirstName] = useState('');
@@ -79,67 +80,47 @@ const Register = () => {
     };
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-md-6 offset-md-3">
-                    <h2 className="my-4 text-center">Register</h2>
-                    {error && (
-                        <div className="alert alert-danger" role="alert">
-                            {error}
-                        </div>
-                    )}
-                    <form onSubmit={onSubmit}>
-                        <div className="form-group">
-                            <>
-                            <label htmlFor="firstName">First Name:</label>
-                            <input
-                                type="text"
-                                id="firstName"
-                                name="firstName"
-                                value={firstName}
-                                onChange={e => setFirstName(e.target.value)}
-                                className="form-control"
-                                />
-                            </>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="lastName">Last Name:</label>
-                            <input
-                                type="text"
-                                id="lastName"
-                                name="lastName"
-                                value={lastName}
-                                onChange={e => setLastName(e.target.value)}
-                                className="form-control"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Email:</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={email}
-                                onChange={e => setEmail(e.target.value)}
-                                className="form-control"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="password">Password:</label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
-                                className="form-control"
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-primary btn-block">
-                            Register
-                        </button>
-                    </form>
-                </div>
+        <div className="registration">
+            <div>
+                <h2>Register</h2>
+                {error && (
+                    <div className="alert alert-danger" role="alert">
+                        {error}
+                    </div>
+                )}
+                <form onSubmit={onSubmit}>
+                    <input
+                        type="text"
+                        id="firstName"
+                        placeholder="First Name"
+                        value={firstName}
+                        onChange={e => setFirstName(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        id="lastName"
+                        placeholder="Last Name"
+                        value={lastName}
+                        onChange={e => setLastName(e.target.value)}
+                    />
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                    <button type="submit">
+                        Register
+                    </button>
+                </form>
             </div>
         </div>
     );

@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
+import '../style/Navigation.scss';
 import UserContext from '../UserContext';
 
 const Navbar = () => {
@@ -12,56 +14,52 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <Link className="navbar-brand" to="/">
-                Rave Center
-            </Link>
-            <Link className="navbar-brand" to="/aboutUs">
-                About Us 
-            </Link>
-            <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav ml-auto">
-                    {!user && (
-                        <>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/register">
-                                    Register
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/login">
-                                    Login
-                                </Link>
-                            </li>
-                        </>
-                    )}
-                    {user && (
-                        <>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/" onClick={handleLogout}>
-                                    Logout
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/dashboard">
-                                    Dashboard
-                                </Link>
-                            </li>
-                        </>
-                    )}
-                </ul>
-            </div>
+        <nav className="navigation">
+            <ul className="navigation__list">
+                <li className="navigation__item">
+                    <NavLink to="/" activeClassName="navigation__link--active" className="navigation__link">
+                        Rave Center
+                    </NavLink>
+                </li>
+                <li className="navigation__item">
+                    <NavLink to="/aboutUs" activeClassName="navigation__link--active" className="navigation__link">
+                        About
+                    </NavLink>
+                </li>
+                <li className="navigation__item navigation__item--logo">
+                    <NavLink to="/" className="navigation__logo-link">
+                        <img src={logo} alt="Arcade Logo" className="navigation__logo" />
+                    </NavLink>
+                </li>
+                {!user && (
+                    <>
+                        <li className="navigation__item">
+                            <NavLink activeClassName="navigation__link--active" className="navigation__link" to="/register">
+                                Register
+                            </NavLink>
+                        </li>
+                        <li className="navigation__item">
+                            <NavLink activeClassName="navigation__link--active" className="navigation__link" to="/login">
+                                Login
+                            </NavLink>
+                        </li>
+                    </>
+                )}
+                {user && (
+                    <>
+                        <li className="navigation__item ">
+                            <NavLink activeClassName="navigation__link--active" className="navigation__link" to="/dashboard">
+                                Dashboard
+                            </NavLink>
+                        </li>
+                        <li className="navigation__item ">
+                            <NavLink activeClassName="navigation__link--active" className="navigation__link" to="/" onClick={handleLogout}>
+                                Logout
+                            </NavLink>
+                        </li>
+                    </>
+                )}
+            </ul>
         </nav>
     );
 };

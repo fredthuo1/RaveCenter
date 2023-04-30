@@ -1,0 +1,45 @@
+.information {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background-color: #f7f7f7;
+    padding: 20vh;
+
+    h2 {
+        font-size: 36px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 24px;
+        color: #000;
+    }
+
+    p {
+        font-size: 18px;
+        font-weight: 400;
+        text-align: center;
+        color: #4a4a4a;
+        line-height: 1.6;
+        margin-bottom: 24px;
+    }
+
+    .information__button {
+        background-color: #000;
+        color: #fff;
+        padding: 24px 24px;
+        border: none;
+        border-radius: 24px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        margin-bottom: 12vh;
+
+        &:hover {
+            background-color: #333;
+        }
+    }
+}

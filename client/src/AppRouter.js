@@ -10,6 +10,9 @@ import AddEvent from './components/AddEvent';
 import EventForm from './components/EventForm';
 import EventView from './components/EventView';
 import AboutUs from './components/AboutUs';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import ContactPage from './components/ContactPage';
 
 const AppRouter = () => {
     const [user, setUser] = useState(null);
@@ -17,6 +20,7 @@ const AppRouter = () => {
     return (
         <UserContext.Provider value={{ user, setUser }}>
             <Router>
+                <Header />
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -27,7 +31,9 @@ const AppRouter = () => {
                     <Route path="/view-event" element={<EventForm />} />
                     <Route path="/edit-event" element={<EventView />} />
                     <Route path="/aboutUs" element={<AboutUs />} />
+                    <Route path="/contact" element={<ContactPage />} />
                 </Routes>
+                <Footer />
             </Router>
         </UserContext.Provider>
     );
