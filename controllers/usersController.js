@@ -30,7 +30,7 @@ const getUserById = async (req, res) => {
 // Create a new user
 const createUser = async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
-    
+
     // Server-side validation
     let errorMessage = '';
     if (!firstName || !lastName || !email || !password) {
@@ -78,6 +78,7 @@ const createUser = async (req, res) => {
         res.status(500).json({ message: "Server error. Please try again later." });
     }
 };
+
 
 
 // Update a user

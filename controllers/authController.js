@@ -1,7 +1,10 @@
-const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const dotenv = require('dotenv');
+const axios = require('axios');
+
+dotenv.config();
 
 const usersController = require("../controllers/usersController");
 
@@ -13,12 +16,10 @@ const register = async (req, res) => {
     // Call the createUser method to handle the rest of the validation and user creation
     try {
         const newUser = await usersController.createUser(req, res);
-        console.log(newUser)
         if (!res.headersSent) {
             res.status(201).json({ message: "User registered successfully", user: newUser });
         }
     } catch (error) {
-        console.log(error)
         res.status(500).json({ message: "Server error. Please try again later." });
     }
 };
@@ -51,8 +52,7 @@ const login = async (req, res) => {
         }
 
         // Generate a JWT token
-        const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
+        const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '24h' });
         res.status(200).json({ message: "Logged in successfully", token, user: { id: user._id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
     } catch (error) {
         res.status(500).json({ message: "Server error. Please try again later." });
