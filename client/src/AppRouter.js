@@ -14,6 +14,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ContactPage from './components/ContactPage';
 import Events from './components/Events';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import EventObject from './components/EventObject';
 
 const AppRouter = () => {
     const [user, setUser] = useState(null);
@@ -21,6 +24,7 @@ const AppRouter = () => {
     return (
         <UserContext.Provider value={{ user, setUser }}>
             <Router>
+                <ToastContainer />
                 <Header />
                 <Navbar />
                 <Routes>
@@ -34,6 +38,7 @@ const AppRouter = () => {
                     <Route path="/aboutUs" element={<AboutUs />} />
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/events" element={<Events />} />
+                    <Route path="/event" element={<EventObject />} />
                 </Routes>
                 <Footer />
             </Router>

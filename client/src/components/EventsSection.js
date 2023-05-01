@@ -1,127 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Section from '../components/Section';
+import axios from 'axios';
 import EventCard from '../components/EventCard';
 import '../style/EventsSection.scss';
-import Founder from '../assets/Founder.png';
+import one from '../assets/party1.jpg';
+import two from '../assets/party2.jpg';
+import three from '../assets/party3.jpg';
+import four from '../assets/party5.jpg';
+import five from '../assets/party6.jpg';
+import six from '../assets/party7.jpg';
+import seven from '../assets/party4.jpg';
+import eight from '../assets/party8.jpg';
+
+const images = [
+    one, two, three, four, five, six, seven, eight
+];
 
 const EventsSection = () => {
     const title = 'Upcoming Events';
+    const [events, setEvents] = useState([]);
 
-    const eventsData = [
-        {
-            id: 1,
-            image: {Founder},
-            title: "Event 1",
-            date: "October 1, 2023",
-            time: "10:00 AM - 1:00 PM",
-            location: "123 Main Street",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut maximus arcu. Nullam ut lorem eget enim fringilla sagittis."
-        },
-        {
-            id: 2,
-            image: { Founder },
-            title: "Event 2",
-            date: "October 5, 2023",
-            time: "2:00 PM - 5:00 PM",
-            location: "456 Main Street",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut maximus arcu. Nullam ut lorem eget enim fringilla sagittis."
-        },
-        {
-            id: 3,
-            image: { Founder },
-            title: "Event 3",
-            date: "October 10, 2023",
-            time: "6:00 PM - 9:00 PM",
-            location: "789 Main Street",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut maximus arcu. Nullam ut lorem eget enim fringilla sagittis."
-        },
-        {
-            id: 4,
-            image: { Founder },
-            title: "Event 1",
-            date: "October 1, 2023",
-            time: "10:00 AM - 1:00 PM",
-            location: "123 Main Street",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut maximus arcu. Nullam ut lorem eget enim fringilla sagittis."
-        },
-        {
-            id: 5,
-            image: { Founder },
-            title: "Event 2",
-            date: "October 5, 2023",
-            time: "2:00 PM - 5:00 PM",
-            location: "456 Main Street",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut maximus arcu. Nullam ut lorem eget enim fringilla sagittis."
-        },
-        {
-            id: 6,
-            image: { Founder },
-            title: "Event 3",
-            date: "October 10, 2023",
-            time: "6:00 PM - 9:00 PM",
-            location: "789 Main Street",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut maximus arcu. Nullam ut lorem eget enim fringilla sagittis."
-        },
-        {
-            id: 7,
-            image: { Founder },
-            title: "Event 1",
-            date: "October 1, 2023",
-            time: "10:00 AM - 1:00 PM",
-            location: "123 Main Street",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut maximus arcu. Nullam ut lorem eget enim fringilla sagittis."
-        },
-        {
-            id: 8,
-            image: { Founder },
-            title: "Event 2",
-            date: "October 5, 2023",
-            time: "2:00 PM - 5:00 PM",
-            location: "456 Main Street",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut maximus arcu. Nullam ut lorem eget enim fringilla sagittis."
-        },
-        {
-            id: 9,
-            image: { Founder },
-            title: "Event 3",
-            date: "October 10, 2023",
-            time: "6:00 PM - 9:00 PM",
-            location: "789 Main Street",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut maximus arcu. Nullam ut lorem eget enim fringilla sagittis."
-        },
-        {
-            id: 10,
-            image: { Founder },
-            title: "Event 1",
-            date: "October 1, 2023",
-            time: "10:00 AM - 1:00 PM",
-            location: "123 Main Street",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut maximus arcu. Nullam ut lorem eget enim fringilla sagittis."
-        },
-        {
-            id: 10,
-            image: { Founder },
-            title: "Event 2",
-            date: "October 5, 2023",
-            time: "2:00 PM - 5:00 PM",
-            location: "456 Main Street",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut maximus arcu. Nullam ut lorem eget enim fringilla sagittis."
-        },
-        {
-            id: 12,
-            image: { Founder },
-            title: "Event 3",
-            date: "October 10, 2023",
-            time: "6:00 PM - 9:00 PM",
-            location: "789 Main Street",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut maximus arcu. Nullam ut lorem eget enim fringilla sagittis."
-        },
-    ];
+    useEffect(() => {
+        fetchEvents();
+    }, []);
 
+    const fetchEvents = async () => {
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            const response = await axios.get('/api/events/eventbrite/events/', config);
+            setEvents(response.data.event.events);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-    const eventsList = eventsData.map((event) => (
-        <div className="event-card">
-            <EventCard key={event.id} event={event} />
+    const eventsList = events.slice(0, 8).map((event, index) => (
+        <div className="event-card" key={index}>
+            <EventCard event={event} image={images[index % images.length]} />
         </div>
     ));
 

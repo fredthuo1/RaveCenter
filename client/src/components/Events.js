@@ -5,13 +5,19 @@ import EventsList from './EventsList';
 const Events = () => {
     const [events, setEvents] = useState([]);
 
+
     useEffect(() => {
         fetchEvents();
     }, []);
 
     const fetchEvents = async () => {
         try {
-            const response = await axios.get('/api/events/eventbrite/events/');
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            const response = await axios.get('/api/events/eventbrite/events/', config);
             setEvents(response.data.event.events);
         } catch (error) {
             console.log(error);

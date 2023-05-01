@@ -1,20 +1,28 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../style/EventCard.scss';
-import Founder from '../assets/Founder.png';
 
+const EventCard = (props) => {
+    const navigate = useNavigate();
+    const { name, description, start, end, currency } = props.event;
+    const imageUrl = props.image;
 
-const EventCard = ({ event }) => {
+    const handleClick = () => {
+        navigate('/event', { state: { event: props } });
+    }
+
     return (
-        <div className="card">
-            <div className="card-image">
-                <img src={Founder} alt={event.title} />
-            </div>
-            <div className="card-content">
-                <h3>{event.title}</h3>
-                <p>{event.date}</p>
-                <p>{event.time}</p>
-                <p>{event.location}</p>
-                <a href="#">Learn More</a>
+        <div className="event-card">
+            <img src={imageUrl} alt={props.title} className="event-image" />
+            <div className="event-details">
+                <h3>{name.text}</h3>
+                <p>{description.text}</p>
+                <p>Start: {start.local}</p>
+                <p>End: {end.local}</p>
+                <p>Currency: {currency}</p>
+                <button onClick={handleClick}>
+                    Find more about the Event!
+                </button>
             </div>
         </div>
     );

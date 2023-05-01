@@ -11,6 +11,7 @@ const Navbar = () => {
 
     const handleLogout = () => {
         setUser(null);
+        localStorage.clear(); // clear all data in localStorage
     };
 
     return (

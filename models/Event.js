@@ -4,10 +4,10 @@ const eventSchema = new mongoose.Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
     url: { type: String },
-    start: { type: Date },
-    end: { type: Date },
-    created: { type: Date },
-    changed: { type: Date },
+    start: { type: String },
+    end: { type: String },
+    created: { type: String },
+    changed: { type: String },
     status: { type: String },
     currency: { type: String },
     online_event: { type: Boolean },
@@ -26,3 +26,5 @@ const eventSchema = new mongoose.Schema({
 const Event = mongoose.model('Event', eventSchema);
 
 module.exports = Event;
+
+

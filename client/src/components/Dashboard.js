@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import EventsList from './EventsList';
+
 import '../style/Dashboard.scss';
 
 const Dashboard = () => {
@@ -12,16 +13,30 @@ const Dashboard = () => {
         navigate('/add-event');
     }
 
+    console.log("Events", events)
+
     useEffect(() => {
         fetchEvents();
     }, []);
 
     const fetchEvents = async () => {
-        try {
-            const response = await axios.get('/api/events/eventbrite/events/');
-            setEvents(response.data.event.events);
-        } catch (error) {
-            console.log(error);
+        const token = localStorage.getItem("token");
+        if (token) {
+            try {
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                };
+                const response = await axios.get('/api/events/', config);
+                console.log("Response", response);
+                setEvents(response.data.event.events);
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            navigate('/login');
         }
     };
 

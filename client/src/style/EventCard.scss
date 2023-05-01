@@ -1,12 +1,13 @@
 .event-card {
     display: flex;
-    flex-direction: column;
-    width: 300px;
-    background-color: #fff;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 6px;
     overflow: hidden;
     transition: all 0.2s ease-in-out;
+    margin: 5%;
 
     &:hover {
         transform: translateY(-5px);
@@ -14,14 +15,16 @@
     }
 
     .event-image {
-        width: 100%;
-        height: 200px;
+        width: 50%;
+        height: 100%;
         background-size: cover;
         background-position: center;
     }
 
     .event-details {
+        width: 100%;
         padding: 20px;
+        height: 100%;
 
         h3 {
             font-size: 20px;

@@ -44,6 +44,7 @@ const getEventById = async (req, res) => {
 // Create a new event
 const createEvent = async (req, res) => {
     // Check if user is authenticated
+    console.log("Body", req.body)
     if (!req.user) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
@@ -60,14 +61,14 @@ const createEvent = async (req, res) => {
             status,
             currency,
             online_event,
-            hide_start_date,
-            hide_end_date,
             venue_id,
             organizer_id,
             category_id,
             subcategory_id,
             format_id,
             timezone,
+            capacity,
+            show_pick_a_seat,
         } = req.body;
 
         const event = new Event({
@@ -81,14 +82,14 @@ const createEvent = async (req, res) => {
             status,
             currency,
             online_event,
-            hide_start_date,
-            hide_end_date,
             venue_id,
             organizer_id,
             category_id,
             subcategory_id,
             format_id,
             timezone,
+            capacity,
+            show_pick_a_seat,
             creator: userId, // set the creator field to the authenticated user's ID
             ratings: [], // initialize an empty ratings array
         });
@@ -150,25 +151,27 @@ const deleteEventById = async (req, res) => {
 
 // Search for public events
 const createEventOnEventBrite = async (req, res) => {
-    console.log(req.body)
+    console.log("Request", req.body)
+
     const {
-        name: { html },
-        description,
+        name,
+        description,   
+        url,
         start: { utc: startUtc, timezone: startTz },
         end: { utc: endUtc, timezone: endTz },
+        created,
+        changed,
+        status,
         currency,
         online_event,
+        venue_id,
         organizer_id,
+        category_id,
+        subcategory_id,
+        format_id,
+        timezone,
         capacity,
-        password,
-        listed,
-        shareable,
-        invite_only,
-        show_remaining,
         show_pick_a_seat,
-        show_seatmap_thumbnail,
-        show_colors_in_seatmap_thumbnail,
-        locale,
     } = req.body.event;
 
     // Validate name and description fields
@@ -178,8 +181,8 @@ const createEventOnEventBrite = async (req, res) => {
 
     const event = {
         event: {
-            name: { html },
-            description: { html },
+            name,
+            description,
             url,
             start: { utc: startUtc, timezone: startTz },
             end: { utc: endUtc, timezone: endTz },
@@ -188,8 +191,6 @@ const createEventOnEventBrite = async (req, res) => {
             status,
             currency,
             online_event,
-            hide_start_date,
-            hide_end_date,
             venue_id,
             organizer_id,
             category_id,
@@ -197,18 +198,12 @@ const createEventOnEventBrite = async (req, res) => {
             format_id,
             timezone,
             capacity,
-            password,
-            listed,
-            shareable,
-            invite_only,
-            show_remaining,
             show_pick_a_seat,
-            show_seatmap_thumbnail,
-            show_colors_in_seatmap_thumbnail,
-            locale,
-            ratings: [], // initialize an empty ratings array
         },
     };
+
+    console.log("Start",await event)
+    console.log("End", await event)
 
     // Send the request to the Eventbrite API
     try {
@@ -219,7 +214,8 @@ const createEventOnEventBrite = async (req, res) => {
             }
         });
         const createdEvent = response.data.event;
-        res.status(200).json({ message: 'Event updated successfully', event: createdEvent });
+        console.log("CreatedEvent", createdEvent)
+        res.status(200).json({ message: 'Event created successfully', event: createdEvent });
     } catch (error) {
         console.log(error)
         res.status(500).json({ message: 'Error creating event', error: error.message });

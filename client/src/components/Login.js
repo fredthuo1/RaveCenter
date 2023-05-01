@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import UserContext from '../UserContext';
+import jwt_decode from 'jwt-decode';
 import '../style/Login.scss';
 
 const Login = () => {
@@ -27,8 +28,13 @@ const Login = () => {
 
             const body = JSON.stringify({ email, password });
             const response = await axios.post('/api/auth/login', body, config);
-
-            setUser(response.data.user); // Set the user data in the global state
+            // Store the token in local storage
+            localStorage.setItem('token', response.data.token);
+            // Decode the token to get the user data and set it in the global state
+            const decoded = jwt_decode(response.data.token);
+            console.log('User in: ', decoded)
+            setUser(decoded);
+            localStorage.setItem('user', decoded);
             navigate('/'); // Redirect to the home page after successful login
         } catch (error) {
             console.error(error);
