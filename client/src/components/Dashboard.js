@@ -21,11 +21,11 @@ const Dashboard = () => {
 
     const fetchEvents = async () => {
         const token = localStorage.getItem("token");
+        console.log(token)
         if (token) {
             try {
                 const config = {
                     headers: {
-                        Authorization: `Bearer ${token}`,
                         'Content-Type': 'application/json'
                     }
                 };
