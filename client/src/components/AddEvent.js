@@ -10,6 +10,11 @@ const AddEvent = ({ onEventAdded }) => {
     const [showForm, setShowForm] = useState(true);
     const navigate = useNavigate();
 
+    const handleClick = () => {
+        createEvent();
+        navigate('/events');
+    }
+
     const createEvent = async (formData) => {
         const newEvent = Object.fromEntries(formData.entries());
         const token = localStorage.getItem("token");
@@ -80,7 +85,7 @@ const AddEvent = ({ onEventAdded }) => {
             {!showForm && (
                 <button className="add-event-button" onClick={() => setShowForm(true)}>Add New Event</button>
             )}
-            {showForm && <div className="add-event-form"><EventForm onSubmit={createEvent} onCancel={() => setShowForm(false)} /></div>}
+            {showForm && <div className="add-event-form"><EventForm onSubmit={handleClick} onCancel={() => setShowForm(false)} /></div>}
 
 
         </div>
