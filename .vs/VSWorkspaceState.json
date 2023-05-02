@@ -1,13 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\.idea",
     "\\client",
+    "\\client\\src",
+    "\\client\\src\\components",
+    "\\client\\src\\style",
     "\\controllers",
-    "\\mock",
     "\\models",
     "\\routes",
-    "\\routes\\api",
-    "\\tests"
+    "\\routes\\api"
   ],
+  "SelectedNode": "\\client\\src\\App.scss",
   "PreviewInSolutionExplorer": false
 }

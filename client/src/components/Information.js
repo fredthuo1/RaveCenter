@@ -10,7 +10,7 @@ const Information = () => {
     return (
         <div className="information">
             <Section title={title} content={content} variant="dark" />
-            <button className="information__button" onClick={() => window.location.href = '/about'} >Learn More About Us</button>
+            <button className="information__button" onClick={() => window.location.href = '/aboutUs'} >Learn More About Us</button>
         </div>
     );
 };
